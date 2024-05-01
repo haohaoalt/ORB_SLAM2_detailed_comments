@@ -92,7 +92,7 @@ int main(int argc, char **argv)
     {
         // Read image from file
         // step 4.1 读根据前面获得的图像文件名读取图像,读取过程中不改变图像的格式 
-        im = cv::imread(vstrImageFilenames[ni],CV_LOAD_IMAGE_UNCHANGED);
+        im = cv::imread(vstrImageFilenames[ni],cv::IMREAD_UNCHANGED);
         double tframe = vTimestamps[ni];
 
         // step 4.2 图像的合法性检查
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
         }
 
         // step 4.3 开始计时
-#ifdef COMPILEDWITHC11
+#ifdef COMPILEDWITHC14
         std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
 #else
         std::chrono::monotonic_clock::time_point t1 = std::chrono::monotonic_clock::now();
@@ -116,7 +116,7 @@ int main(int argc, char **argv)
 
         // step 4.5 追踪完成,停止当前帧的图像计时, 并计算追踪耗时
 
-#ifdef COMPILEDWITHC11
+#ifdef COMPILEDWITHC14
         std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
 #else
         std::chrono::monotonic_clock::time_point t2 = std::chrono::monotonic_clock::now();
